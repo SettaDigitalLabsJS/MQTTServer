@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "dev": "nodemon --inspect index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Wallace",
   "license": "ISC",
-  "description": "",
+  "description": "Server MQTT que irá guardar as medições dos Assets",
   "dependencies": {
     "aedes": "^0.51.3",
-    "net": "^1.0.2"
+    "aedes-cli": "^0.8.0",
+    "mqtt": "^5.10.3",
+    "dotenv": "^16.4.5",
+    "nodemon": "^3.1.3"
   }
 }
