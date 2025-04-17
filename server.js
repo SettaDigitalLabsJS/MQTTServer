@@ -42,6 +42,12 @@ const tlsServer = tls.createServer({
   cert: fs.readFileSync('certificados/certificate.crt'),
 }, aedes.handle);
 */
+
+const server = net.createServer(aedes.handle);
+server.listen(tcpPort, function () {
+  console.log(`Servidor MQTT rodando em: tcp://localhost:${tcpPort}`);
+});
+
 // Log de eventos do broker
 aedes.on('client', (client) => {
     console.log(`Cliente conectado: ${client.id}`);
