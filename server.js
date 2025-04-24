@@ -15,12 +15,15 @@ const USERS = {
 
 // Função de autenticação
 aedes.authenticate = (client, username, password, callback) => {
-    const userPassword = USERS[username];    if (userPassword && password && password.toString() === userPassword) {
+    const userPassword = USERS[username];    
+    if (userPassword && password && password.toString() === userPassword) {
         console.log(`Cliente "${username}" autenticado com sucesso!`);
         return callback(null, true);
     } else {
         console.log(`Falha na autenticação do cliente "${username}".`);
-        return callback(new Error('Usuário ou senha inválidos'), false);
+        const erro = new Error('Usuário ou senha inválidos');
+        erro.returnCode = 4;
+        return callback(erro, false);
     }
 };
 
@@ -56,6 +59,5 @@ aedes.on('clientDisconnect', (client) => {
     console.log(`Cliente desconectado: ${client.id}`);
 });
 aedes.on('publish', (packet, client) => {
-    console.log(`Mensagem publicada no tópico "${packet.topic}": ${packet.payload}`);
+    console.log(`Mensagem publicada no tópico "${packet.topic}" (QoS ${packet.qos}): ${packet.payload}`);
 });
-
