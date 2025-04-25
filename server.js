@@ -39,16 +39,20 @@ aedes.authorizeSubscribe = (client, sub, callback) => {
     callback(null, sub);  // Permite inscrição
 };
 
-/* Servidor TCP MQTT
-const tlsServer = tls.createServer({
-  key: fs.readFileSync('certificados/privatekey.key'),
-  cert: fs.readFileSync('certificados/certificate.crt'),
-}, aedes.handle);
-*/
+const options = {
+    key: fs.readFileSync('certs/keyname.key'),
+    cert: fs.readFileSync('certs/certificate.crt')
+}
 
-const server = net.createServer(aedes.handle);
-server.listen(tcpPort, function () {
+/*
+const tlsServer = tls.createServer(options, aedes.handle); 
+tlsServer.listen(tcpPort, function () {
   console.log(`Servidor MQTT rodando em: tcp://localhost:${tcpPort}`);
+}); //com certificado
+*/ 
+const server = net.createServer(aedes.handle); // sem certificado
+server.listen(tcpPort, function () {
+    console.log(`Servidor MQTT rodando em: tcp://localhost:${tcpPort}`);
 });
 
 // Log de eventos do broker
