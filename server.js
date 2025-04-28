@@ -9,8 +9,7 @@ const tcpPort = process.env.TCP_PORT;   // Porta padrão para MQTT
 
 // Usuários permitidos
 const USERS = {
-    [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASSWORD,
-    "usuario1": "senha456"
+    [process.env.BASIC_AUTH_USER]: process.env.BASIC_AUTH_PASSWORD
 };
 
 // Função de autenticação
