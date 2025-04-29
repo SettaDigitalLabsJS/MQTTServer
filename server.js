@@ -50,7 +50,7 @@ tlsServer.listen(tcpPort, function () {
 }); //com certificado
 */ 
 const server = net.createServer(aedes.handle); // sem certificado
-server.listen(tcpPort, function () {
+    server.listen(tcpPort, '0.0.0.0', function () {
     console.log(`Servidor MQTT rodando em: tcp://localhost:${tcpPort}`);
 });
 
